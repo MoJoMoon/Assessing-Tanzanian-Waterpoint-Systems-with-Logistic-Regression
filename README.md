@@ -1,190 +1,178 @@
 
 # Module 3 Final Project
+***
+Morgan Jones
 
+<img src='water image.jpg'>
 
 ## Introduction
 
-In this lesson, we'll review all the guidelines and specifications for the final project for Module 3.
+We have been commissioned by the United Republic of Tanzania Ministry of Water to aid in their ongoing Mission: To improve access to safe drinking water and sanitation services to all, and manage water resources so as to ensure national food security and sustainable industrial based economic development. In honor of Maji Week 2020, the Ministry announced intentions to start a service which will monitor and service the functionality of various waterpoints in Tanzania. In order to operate efficiently, the service will need to predict the operation status of the several thousand waterpoints in the country. Our task is to assist the members of this service with accurate predictions for the waterpoints that are functioning as intended, and those which need repair.
 
+As data scientists, we will fulfill this goal by conducting data analysis on the Tanzanian waterpoints and generating classification models which predict with a high accuracy the operating condition of waterpoints within the Tanzanian borders. Areas of focus for the breadth of this work will be:
+
+ - How do water source characteristics effect the functionality of a waterpoint?
+
+ - How does the surrounding geography impact functionality of a waterpoint?
+
+ - How do years and seasonality of operation effect the functionality of a waterpoint?
 
 ## Objectives
 
-- Understand all required aspects of the Final Project for Module 3
-- Understand all required deliverables
-- Understand what constitutes a successful project
+For this notebook, we will build a **Classifier** model to ***predict*** the ***functionality*** of water wells in Tanzania as accuratly as we can. In order to achieve this objective, we will clean, explore, and model the dataset for classification. As such we will need to complete the following tasks:
 
-## Final Project Summary
+ - Understand the Data: Construct a unique business case around the model. Analyze the dataset from various points of view.
+ - Preprocess the Data: Import the data and preprocess the data through cleaning, scrubbing, handling missing values, and exploring different methods with benchmarking.
+ - Describe the Data: Conduct EDA. Create novel distributions, compare multiple distributions, and find insights in the data.
+ - Fit models and conduct Hypothesis Testing: Compare multiple models and give detailed numerical and visual analysis of models.
+ - Gather insights: Give a conclusion with recommendations that are business relevant and are driven by analysis
 
-Congratulations! You've made it through another _intense_ module, and now you're ready to show off your newfound Machine Learning skills!
+## Metrics for Evaluation
 
-![awesome](https://raw.githubusercontent.com/learn-co-curriculum/dsc-mod-3-project-v2-1/master/smart.gif)
+Access to clean water is a basic human right, and an aim of this work is to widen its availability to all citizens of Tanzania. With this in mind, we value a model which has high accuracy. Our primary evaluation metric is the Classification Rate defined as:
 
-All that remains for Module 3 is to complete the final project!
 
-## The Project
+$$ 
+\begin{align}
+ Classification Rate = \frac1N \sum_{i=0}^n I(y_i = \hat{y_i})
+\end{align}
+$$ 
 
-The main goal of this project is to create a classification model. For this project you have the choice to either:
-
-- choose a data set from a curated list
-- choose your own data set _outside_ of the curated list. 
-
-The data guidelines for either option are shown below
-
-For this project, you're going to select a dataset of your choosing and create a classification model. You'll start by identifying a problem you can solve with classification, and then identify a dataset. You'll then use everything you've learned about Data Science and Machine Learning thus far to source a dataset, preprocess and explore it, and then build and interpret a classification model that answers your chosen question.
-
-### a. Choosing the data from a curated list
-
-You are allowed to select one of the four data sets described below. Each comes with its own advantages and disadvantages, and, of course, its own associated business problem and stakeholders. It may be desirable to flesh out your understanding of the audience or the business proposition a little more than sketched out here. If you select one of these four data sets, you **need no further approval from your instructor**.
-
-
-1) [Chicago Car Crash Data](https://data.cityofchicago.org/Transportation/Traffic-Crashes-Crashes/85ca-t3if). Note this links also to [Vehicle Data](https://data.cityofchicago.org/Transportation/Traffic-Crashes-Vehicles/68nd-jvt3) and to [Driver/Passenger Data](https://data.cityofchicago.org/Transportation/Traffic-Crashes-People/u6pd-qa9d).
-
-Build a classifier to predict the primary contributory cause of a car accident, given information about the car, the people in the car, the road conditions etc. You might imagine your audience as a Vehicle Safety Board who's interested in reducing traffic accidents, or as the City of Chicago who's interested in becoming aware of any interesting patterns. Note that there is a **multi-class** classification problem. You will almost certainly want to bin or trim or otherwise limit the number of target categories on which you ultimately predict. Note e.g. that some primary contributory causes have very few samples.
-
-2) [Terry Stops Data](https://catalog.data.gov/dataset/terry-stops).
-In [*Terry v. Ohio*](https://www.oyez.org/cases/1967/67), a landmark Supreme Court case in 1967-8, the court found that a police officer was not in violation of the "unreasonable search and seizure" clause of the Fourth Amendment, even though he stopped and frisked a couple of suspects only because their behavior was suspicious. Thus was born the notion of "reasonable suspicion", according to which an agent of the police may e.g. temporarily detain a person, even in the absence of clearer evidence that would be required for full-blown arrests etc. Terry Stops are stops made of suspicious drivers.
-
-Build a classifier to predict whether an arrest was made after a Terry Stop, given information about the presence of weapons, the time of day of the call, etc. Note that this is a **binary** classification problem.
-
-Note that this dataset also includes information about gender and race. You **may** use this data as well. You may, e.g. pitch your project as an inquiry into whether race (of officer or of subject) plays a role in whether or not an arrest is made.
-
-If you **do** elect to make use of race or gender data, be aware that this can make your project a highly sensitive one; your discretion will be important, as well as your transparency about how you use the data and the ethical issues surrounding it.
-
-3) [Customer Churn Data](https://www.kaggle.com/becksddf/churn-in-telecoms-dataset)
-
-Build a classifier to predict whether a customer will ("soon") stop doing business with SyriaTel, a telecommunications company. Note that this is a **binary** classification problem.
-
-Most naturally, your audience here would be the telecom business itself, interested in losing money on customers who don't stick around very long. Are there any predictable patterns here?
-
-4) [Tanzanian Water Well Data](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/page/23/) (*active competition*!)
-Tanzania, as a developing country, struggles with providing clean water to its population of over 57,000,000. There are many waterpoints already established in the country, but some are in need of repair while others have failed altogether.
-
-Build a classifier to predict the condition of a water well, using information about the sort of pump, when it was installed, etc. Note that this is a **ternary** classification problem.
-
-
-### b. Selecting a Data Set _Outside_ of the Curated List
-
-We encourage you to be very thoughtful when identifying your problem and selecting your data set--an overscoped project goal or a poor data set can quickly bring an otherwise promising project to a grinding halt. **If you are going to choose your own data set, you'll need to run it by your instructor for approval**.
-
-To help you select an appropriate data set for this project, we've set some guidelines:
-
-1. Your dataset should work for classification. The classification task can be either binary or multiclass, as long as it's a classification model.   
-
-2. Your dataset needs to be of sufficient complexity. Try to avoid picking an overly simple dataset. Try to avoid extremely small datasets, as well as the most common datasets like titanic, iris, MNIST, etc. We want to see all the steps of the Data Science Process in this project--it's okay if the dataset is mostly clean, but we expect to see some preprocessing and exploration. See the following section, **_Data Set Constraints_**, for more information on this.   
-
-3. On the other end of the spectrum, don't pick a problem that's too complex, either. Stick to problems that you have a clear idea of how you can use machine learning to solve it. For now, we recommend you stay away from overly complex problems in the domains of Natural Language Processing or Computer Vision--although those domains make use of Supervised Learning, they come with a lot of other special requirements and techniques that you don't know yet (but you'll learn soon!). If you're chosen problem feels like you've overscoped, then it probably is. If you aren't sure if your problem scope is appropriate, double check with your instructor!  
-
-#### Data Set Constraints
-
-When selecting a data set, be sure to take into consideration the following constraints:
-
-1. Your data set can't be one we've already worked with in any labs.
-2. Your data set should contain a minimum of 1000 rows.    
-3. Your data set should contain a minimum of 10 predictor columns, before any one-hot encoding is performed.   
-4. Your instructor must provide final approval on your data set.
-
-#### Problem First, or Data First?
-
-There are two ways that you can about getting started: **_Problem-First_** or **_Data-First_**.
-
-**_Problem-First_**: Start with a problem that you want to solve with classification, and then try to find the data you need to solve it.  If you can't find any data to solve your problem, then you should pick another problem.
-
-**_Data-First_**: Take a look at some of the most popular internet repositories of cool data sets we've listed below. If you find a data set that's particularly interesting for you, then it's totally okay to build your problem around that data set.
-
-There are plenty of amazing places that you can get your data from. We recommend you start looking at data sets in some of these resources first:
-
-* [UCI Machine Learning Datasets Repository](https://archive.ics.uci.edu/ml/datasets.html)
-* [Kaggle Datasets](https://www.kaggle.com/datasets)
-* [Awesome Datasets Repo on Github](https://github.com/awesomedata/awesome-public-datasets)
-* [New York City Open Data Portal](https://opendata.cityofnewyork.us/)
-* [Inside AirBNB ](http://insideairbnb.com/)
-
-
-## The Deliverables
-
-For online students, your completed project should contain the following four deliverables:
-
-1. A **_Jupyter Notebook_** containing any code you've written for this project. This work will need to be pushed to a public GitHub repository dedicated for this project.
-
-2. An organized **README.md** file in the GitHub repository that describes the contents of the repository. This file should be the source of information for navigating through the repository. 
-
-3. A **_[Blog Post](https://github.com/learn-co-curriculum/dsc-welcome-blogging-v2-1)_**.
-
-4. An **_"Executive Summary" PowerPoint Presentation_** that gives a brief overview of your problem/dataset, and each step of the OSEMN process.
-
-Note: On-campus students may have different deliverables, please speak with your instructor.
-
-### Jupyter Notebook Must-Haves
-
-For this project, your Jupyter Notebook should meet the following specifications:
-
-**_Organization/Code Cleanliness_**
-
-* The notebook should be well organized, easy to follow, and code is commented where appropriate.  
-    * Level Up: The notebook contains well-formatted, professional looking markdown cells explaining any substantial code. All functions have docstrings that act as professional-quality documentation.  
-* The notebook is written to technical audiences with a way to both understand your approach and reproduce your results. The target audience for this deliverable is other data scientists looking to validate your findings.  
-
-**_Process, Methodology, and Findings_**
-
-* Your notebook should contain a clear record of your process and methodology for exploring and preprocessing your data, building and tuning a model, and interpreting your results.
-* We recommend you use the OSEMN process to help organize your thoughts and stay on track.
-
-### Blog Post Must-Haves
-
-Refer back to the [Blogging Guidelines](https://github.com/learn-co-curriculum/dsc-welcome-blogging-v2-1) for the technical requirements and blog ideas.
-
-## The Process
-
-These steps are informed by Smart Vision's<sup>1</sup> description of the CRISP-DM process.
-
-### 1. Business Understanding
-
-Start by reading this document, and making sure that you understand the kinds of questions being asked.  In order to narrow your focus, you will likely want to make some design choices about your specific audience, rather than addressing all of the "many people" mentioned in the background section.  Do you want to emphasize affordability, investment, or something else?  This framing will help you choose which stakeholder claims to address.
-
-Three things to be sure you establish during this phase are:
-
-1. **Objectives:** what questions are you trying to answer, and for whom?
-2. **Project plan:** you may want to establish more formal project management practices, such as daily stand-ups or using a Trello board, to plan the time you have remaining.  Regardless you should determine the division of labor, communication expectations, and timeline.
-3. **Success criteria:** what does a successful project look like?  How will you know when you have achieved it?
-
-### 2. Data Understanding
-
-Write a script to download the data (or instructions for future users on how to manually download it), and explore it.  Do you understand what the columns mean?  How do the three data tables relate to each other?  How will you select the subset of relevant data?  What kind of data cleaning is required?
-
-It may be useful to generate visualizations of the data during this phase.
-
-### 3. Data Preparation
-
-Through SQL and Pandas, perform any necessary data cleaning and develop a query that pulls in all relevant data for analysis in a linear regression model, including any merging of tables.  Be sure to document any data that you choose to drop or otherwise exclude.  This is also the phase to consider any feature scaling or one-hot encoding required to feed the data into a classification model.
-
-### 4. Modeling
-
-The focus this time is on prediction. Good prediction is a matter of the model generalizing well. Steps we can take to assure good generalization include: testing the model on unseen data, cross-validation, and regularization. What sort of model should you build? A diverse portfolio is probably best. Classification models we've looked at so far include logistic regression, decision trees, bagging, and boosting, each of these with different flavors. You are encouraged to try any or all of these.
-
-### 5. Evaluation
-
-Recall that there are many different metrics we might use for evaluating a classification model. Accuracy is intuitive, but can be misleading, especially if you have class imbalances in your target. Perhaps, depending on you're defining things, it is more important to minimize false positives, or false negatives. It might therefore be more appropriate to focus on precision or recall. You might also calculate the AUC-ROC to measure your model's *discrimination*.
-
-### 6. Deployment
-
-In this case, your "deployment" comes in the form of the deliverables listed above. Make sure you can answer the following questions about your process:
-
- - "How did you pick the question(s) that you did?"
- - "Why are these questions important from a business perspective?"
- - "How did you decide on the data cleaning options you performed?"
- - "Why did you choose a given method or library?"
- - "Why did you select those visualizations and what did you learn from each of them?"
- - "Why did you pick those features as predictors?"
- - "How would you interpret the results?"
- - "How confident are you in the predictive quality of the results?"
- - "What are some of the things that could cause the results to be wrong?"
-
-
-## Grading Rubric 
-
-Online students can find a PDF of the grading rubric for the project [here](https://github.com/learn-co-curriculum/dsc-mod-3-project-v2-1/blob/master/module_3_project_rubric.pdf). _Note: On-campus students may have different requirements, please speak with your instructor._ 
-
-
-## Citation
-
-1. "What is the CRISP-DM Methodology?" Smart Vision Europe. Available at: https://www.sv-europe.com/crisp-dm-methodology/
+ - Yields the percentage of rows where the predicted class $\hat{y}$ is equal to the actual class $y$ in the test dataset.
+ - The maximum value for $Classification Rate$ is 1 and the minimum value is 0.
+ - Our goal is to maximize the $Classification Rate$, with a minimum benchmark of:
+ 
+$$ 
+\begin{align}
+Classification Rate = 0.80
+\end{align}
+$$ 
+
+This translates to our model **predicting the correct status of a waterpoint 80 times out of 100 times**. 
+
+Our model will be a **ternary classifier**, meaning that there are three potential classes a waterpoint can be placed. In the event our model improperly predicts the status of a waterpoint, we place a **higher importance on false positives more than false negatives**. Our model predicting that a waterpoint is functional when it is not functional can put members of a community at risk of not having access to clean drinking water for a period of time. However, when our model predicts that a waterpoint is non-functional, or functional but in need of repair when it is actually functional, the ministry may allocate resources to an issue that is currently non-existant, but these resources could potentially be used for another waterpoint or for that waterpoint at a later time. Therefore for the purposes of this work we will **value a low false positive rate more than a low false negative rate**. Precision is more important where False Positives are more costly than False Negatives, when defined as:
+
+$$ \text{Precision} = \frac{\text{Number of True Positives}}{\text{Number of Predicted Positives}} $$
+
+  
+
+$$ \text{Recall} = \frac{\text{Number of True Positives}}{\text{Number of Actual Total Positives}} $$
+
+Therefore we aim to generate a final model where:
+
+$$ \text{Precision} < \text{Recall} $$
+
+
+## Target Variable
+
+**Status_Group** | **Description** 
+:---------|:-------------
+`functional` | The waterpoint is operational and there are no repairs needed
+`functional needs repair` | The waterpoint is operational, but needs repairs
+`non functional` | The waterpoint is not operational, and needs repair/replacement
+
+
+## Exploration
+
+
+### Water Source Observations
+
+<img src='function distribution.png'>
+
+From our explorations into the various water source dimensions of our dataset, we have been able to find certain patterns that may be indicators for predicting the functioning status of a waterpoint. We can see from our visualizations that:
+
+ - **Amount_tsh**
+     - High levels of water available to a waterpoint appears correlated to the waterpoint being functional
+     - Low levels of amount_tsh appears related to non-functionality. This could indicate that the waterpoint is dry with no water to offer
+ 
+ - **Quantity**
+     - Enough level of water quantity is linked to a waterpoint being functional
+     - Dry level of water quantity has a high relation to non-functional waterpoints further indicating low amounts of water could cause a waterpoint to stop functioning.
+     
+ - **Quality**
+     - Most waterpoints connected to large amounts of water have Fluoride and Good quality. These quality levels have a high relationship with functional waterpoints.
+     
+ - **Extraction**
+     - Most wells are gravity and handpump wells, with these types having the highest amount of functioning waterpoints.
+     - The functioning wells connected to the largest sources of water are using a motorpump.
+     
+ - **Source**
+     - The source type with the most functioning wells is Spring Well. 
+     - The source type with the most non-functioning wells is the Shallow Well, which again could indicate that shallow wells may dry faster.
+     
+### Geographical Observations
+
+<img src='pop.png'>
+
+From our explorations into the various geographical dimensions of our dataset, we have been able to find certain patterns that may be indicators for predicting the functioning status of a waterpoint. We can see from our visualizations that:
+
+ - **Region**
+     - Ininga & Kilmanjaro have some of the highest percentages of functional waterpoints and the highest counts of wells, but contain some of the lowest average populations. This could indicate that a factor for keeping wells functioning is having a high ratio of waterpoints to population.
+     - Mara. Lindi, Rukwa, and Mtwara have some of the highest average populations near waterpoints, but have more non-functioning wells than functioning wells.
+     - Kigoma has the highest ratio of wells that are functional but in need of repair.
+ 
+ - **Basin**
+     - Lake Victoria, Pangani, Rufiji, have the most waterpoints by basin.
+     - Rufiji has the best percentage of functional waterpoints.
+     - Ruvuma/ Southern Coast have the worst ratio of functional to non-functional wells.
+
+ - **Elevation**
+     - Tanga, Shinyanga, Mwanza have the highest elevations for functional but in need of repair waterpoints
+     - There is no elevation difference between functional and non-functional wells for most regions.
+ - **Population by Region**
+     - Certain levels of population, such as 499247, 878501, and 463070 there is a high ratio of functioning wells to non-functioning wells. For population levels 462674, 563370, 661359, and 1,060,886 there is more likely to be a non-functioning well than a functioning well.
+     
+     
+### Years & Seasonality Observations
+
+<img src='seasonality.png'>
+
+From our explorations into the various temporal dimensions of our dataset, we have been able to find certain patterns that may be indicators for predicting the functioning status of a waterpoint. We can see from our visualizations that:
+
+ - **Report Year**
+     - Most reports are made in 2011 with 48% and 2013 with 40% of the reports.
+     - The best ratio of functional reports is 2011, with the worst being 2012.
+ - **Construction Year**
+     - Most functional reports were made on wells constructed after 1990 indicating that age could be a factor of functionality.
+     - More wells were created after 1990, with the most being constructed in 2000.
+ - **Month Recorded**
+     - Most reporting is done in March with 31% and February with 20% of total reports. 
+     - January, July, October, and November have the worst ratios for functioning wells.
+     - There appears to be a regional relationship with the month that a report is generated, this could have a correlation on whether a well is functioning.
+     
+ - **Season Recorded**
+     - Most reports are made in the long rain season with 38% of reports.
+     - The least amount of reports are made in the short rain season with 3% of total reports.
+     - The long rain has the highest ratio of functionality of the seasons.
+     - The short rain season has the lowest ratio of functionality.
+     - There is a regional relationship with the season that a report was made. 
+         - Most long dry reports are made in the North West.
+         - Most long rain reports are made in the East.
+         - Most short rain reports are made in the Mid West.
+         
+ - **Day Recorded** 
+     - The day with highest percentage of reports is Wednesday at 15%.
+     - The day with the lowest percentage of reports is Sunday with 12%.
+     - There appears to be no correlation between the day a report was made and the functionality of the well.
+     - There is no apparent regional relationship between the day of the week a report was made.
+     
+ - **Age**
+     - The most common age for a well is 13 years.
+     - For age range between -7 and 19 years, the number of functional wells is higher than non-functional wells.
+     - For age range between 20 and 53 years, the number of functional wells is lower than non-functional wells.
+
+## Model Interpretation
+
+After carefully cleaning and exploring our data, we were able to run a Sci-Kit learn pipeline on several models, having the following accuracy results after running Stratified K-Fold Cross Validation:
+
+<img src= 'models.PNG'>
+
+<img src= 'scores1.PNG'>
+
+The results indicated that a Random Forest Classifier would be the most accurate in predicting the functionality of a well. After hyperparameter tuning with GridSearchCV, and tuning for accuracy, and recall we created a Random Forest Classifier which achieved an accuracy score of 0.8063485448357297, thus successfully reaching the goal set in the metrics for evaluation section of our work. We also managed to keep a relatively low false positive rate. The resulting confusion matrix and classification report are as follows:
+
+<img src= 'confusion_matrix.PNG'>
+
+In regard to feature importance, the Random Forest Classifier deduced that geographical coordinates and elevation measures were the most vital features for predicting functionality in a well. `construction_year` was also a valuable feature, which can confirm that the linear regression model to predict missing year values was beneficial. Two features that were engineered were also considered as most important, those being `age`, and `funder_counts`. Our Random Forest feature importances are as follows:
+
+<img src= 'top10_importances.PNG'>
