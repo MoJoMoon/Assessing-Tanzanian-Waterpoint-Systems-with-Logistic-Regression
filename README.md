@@ -176,3 +176,11 @@ The results indicated that a Random Forest Classifier would be the most accurate
 In regard to feature importance, the Random Forest Classifier deduced that geographical coordinates and elevation measures were the most vital features for predicting functionality in a well. `construction_year` was also a valuable feature, which can confirm that the linear regression model to predict missing year values was beneficial. Two features that were engineered were also considered as most important, those being `age`, and `funder_counts`. Our Random Forest feature importances are as follows:
 
 <img src= 'img\top10_importances.PNG'>
+
+## Future Work
+
+ - Collect More Data: Collecting more data, and increasing usage of TAARIFA would improve predictability of models
+
+ - Increase Model Complexity: Neural Networks and Quantum Based Classifiers could improve predictive performances for the ministry to get clean water accessible to more citizens
+ 
+ - Incorporate Computer Vision: Investment in Drones with Computer Vision models designed to find visual patterns of functionality could greatly increase predictive performance
