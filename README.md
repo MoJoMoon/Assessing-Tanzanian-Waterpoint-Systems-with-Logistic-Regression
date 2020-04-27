@@ -3,7 +3,7 @@
 ***
 Morgan Jones
 
-<img src='water image.jpg'>
+<img src='img\water image.jpg'>
 
 ## Introduction
 
@@ -77,7 +77,7 @@ $$ \text{Precision} < \text{Recall} $$
 
 ### Water Source Observations
 
-<img src='function distribution.png'>
+<img src='img\function distribution.png'>
 
 From our explorations into the various water source dimensions of our dataset, we have been able to find certain patterns that may be indicators for predicting the functioning status of a waterpoint. We can see from our visualizations that:
 
@@ -102,7 +102,7 @@ From our explorations into the various water source dimensions of our dataset, w
      
 ### Geographical Observations
 
-<img src='pop.png'>
+<img src='img\pop.png'>
 
 From our explorations into the various geographical dimensions of our dataset, we have been able to find certain patterns that may be indicators for predicting the functioning status of a waterpoint. We can see from our visualizations that:
 
@@ -125,7 +125,7 @@ From our explorations into the various geographical dimensions of our dataset, w
      
 ### Years & Seasonality Observations
 
-<img src='seasonality.png'>
+<img src='img\seasonality.png'>
 
 From our explorations into the various temporal dimensions of our dataset, we have been able to find certain patterns that may be indicators for predicting the functioning status of a waterpoint. We can see from our visualizations that:
 
@@ -165,14 +165,14 @@ From our explorations into the various temporal dimensions of our dataset, we ha
 
 After carefully cleaning and exploring our data, we were able to run a Sci-Kit learn pipeline on several models, having the following accuracy results after running Stratified K-Fold Cross Validation:
 
-<img src= 'models.PNG'>
+<img src= 'img\models.PNG'>
 
-<img src= 'scores1.PNG'>
+<img src= 'img\scores1.PNG'>
 
 The results indicated that a Random Forest Classifier would be the most accurate in predicting the functionality of a well. After hyperparameter tuning with GridSearchCV, and tuning for accuracy, and recall we created a Random Forest Classifier which achieved an accuracy score of 0.8063485448357297, thus successfully reaching the goal set in the metrics for evaluation section of our work. We also managed to keep a relatively low false positive rate. The resulting confusion matrix and classification report are as follows:
 
-<img src= 'confusion_matrix.PNG'>
+<img src= 'img\confusion_matrix.PNG'>
 
 In regard to feature importance, the Random Forest Classifier deduced that geographical coordinates and elevation measures were the most vital features for predicting functionality in a well. `construction_year` was also a valuable feature, which can confirm that the linear regression model to predict missing year values was beneficial. Two features that were engineered were also considered as most important, those being `age`, and `funder_counts`. Our Random Forest feature importances are as follows:
 
-<img src= 'top10_importances.PNG'>
+<img src= 'img\top10_importances.PNG'>
