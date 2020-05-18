@@ -1,5 +1,5 @@
 
-# Module 3 Final Project
+# Assessing Tanzanian Waterpoint Systems with Logistic Regression
 ***
 Morgan Jones
 
